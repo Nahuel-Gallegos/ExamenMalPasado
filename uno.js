@@ -10,6 +10,104 @@ pedir datos por prompt y mostrar por document.write o console.log
 function mostrar()
 {
 
+
+	var nombre;
+	var peso;
+	var sexo;
+	var edad;
+
+	var contadorFemenino =0;
+
+	var contadorTotalPacientes =0;
+	var acumuladorEdad =0;
+	var promedioEdad;
+
+	var flagMasculino = true;
+	var pesoMaximoMasculino;
+	var nombreMasculinoMaximo;
+
+	for(var i = 0; i<5; i++)
+	{
+
+
+		nombre = prompt ("Ingrese el nombre del paciente:");
+
+		while(!isNaN(nombre))
+		{
+			nombre = prompt("Error, reingrese el nombre del paciente:");
+		}
+
+		peso = prompt ("Ingrese peso:");
+		peso  = parseInt (peso);
+
+		while(peso < 45|| peso > 150 || isNaN(peso))
+		{
+			peso = prompt ("Error, reingrese peso:");
+			peso = parseInt (peso);
+		}
+
+		sexo = prompt ("Ingrese el sexo del paciente:");
+
+		while(!isNaN(sexo))
+		{
+			sexo = prompt("Error, reingrese el sexo del paciente:");
+		}
+
+		edad = prompt ("Ingrese edad:");
+		edad  = parseInt (edad);
+
+		while(edad < 18|| edad > 125 || isNaN(edad))
+		{
+			edad = prompt ("Error, reingrese edad:");
+			edad = parseInt (edad);
+		}
+
+		if(sexo == "femenino")
+		{
+			contadorFemenino++;
+		}
+		else
+		{
+			if(flagMasculino == true || pesoMaximoMasculino<peso)
+			{
+				pesoMaximoMasculino = peso;
+				nombreMasculinoMaximo = nombre;
+				flagMasculino = false;
+			}
+		}
+		contadorTotalPacientes++;
+		acumuladorEdad = acumuladorEdad +edad;
+
+}
+//////////////////////
+
+promedioEdad = acumuladorEdad / contadorTotalPacientes;
+
+if(contadorFemenino > 0)
+{
+	document.write ("La cantidad de mujeres ingresadas es " + contadorFemenino + ".<br>");
+}
+else
+{
+	document.write ("No se ingresarion mujeres.<br>" );
+}
+
+document. write ("La edad promedio total es " + promedioEdad + ". <br>");
+
+if(flagMasculino == false)
+{
+	document.write ("El hombre mas pesado es " + nombreMasculinoMaximo);
+}
+else
+{
+	document.write("No se ingresaron hombres.")
+}
+
+}
+
+
+
+/*
 var contador;
 var nombreIngresado;
 var pesoIngresado;
@@ -109,4 +207,4 @@ contador=0;
 	{
 		console.log("el hombre mas pesado es: "+nombreDelMasPesado);
 	}
-}
+*/
